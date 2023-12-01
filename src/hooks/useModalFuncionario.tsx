@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 export default function useModalFuncionario() {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpenFuncionario, setisOpenFuncionario] = useState(false);
 
   const toggleFuncionario = () => {
-    setisOpen(!isOpen);
+    setisOpenFuncionario(!isOpenFuncionario);
   };
 
   return {
-    isOpen,
+    isOpenFuncionario,
     toggleFuncionario,
   };
 }

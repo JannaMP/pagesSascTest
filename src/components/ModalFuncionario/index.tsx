@@ -3,16 +3,16 @@ import "./style.modalfuncionario.css";
 
 interface ModalType {
   children?: ReactNode;
-  isOpen: boolean;
+  isOpenFuncionario: boolean;
   toggleFuncionario: () => void;
 }
 
 export default function ModalFuncionario(props: ModalType) {
   return (
     <>
-      {props.isOpen && (
-        <div id="modalBackground" onClick={props.toggleFuncionario}>
-          <div onClick={(e) => e.stopPropagation()} id="modal">
+      {props.isOpenFuncionario && (
+        <div id="modalBackgroundFuncionario" onClick={props.toggleFuncionario}>
+          <div onClick={(e) => e.stopPropagation()} id="modalFuncionario">
             {props.children}
           </div>
         </div>

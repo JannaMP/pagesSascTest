@@ -1,9 +1,7 @@
 import "./style.cadastro.css";
 import { Link } from "react-router-dom";
-import ModalEquipamento from "../../components/ModalEquipamento";
-import ModalFuncionario from "../../components/ModalFuncionario";
-import ModalEndereco from "../../components/ModalEndereco";
-
+import ModalEquipamento from "../../components/ModalEquipamento/index";
+import ModalFuncionario from "../../components/ModalFuncionario/index";
 import useModalEquipamento from "../../hooks/useModalEquipamento";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -98,7 +96,6 @@ export default function Cadastro() {
   }, []);
 
   const { isOpenEquipamento, toggleEquipamento } = useModalEquipamento();
-  
   const { isOpenFuncionario, toggleFuncionario } = useModalFuncionario();
 
 
@@ -197,11 +194,101 @@ export default function Cadastro() {
         </div>
       </ModalEquipamento>
 
-      <ModalFuncionario>
+    
+
+      <ModalFuncionario isOpenFuncionario={isOpenFuncionario} toggleFuncionario={toggleFuncionario}>
+      <div id="divformEquipamento">
+          <h1>Cadastro de Funcionarios</h1>
+          <form id="formEquipamento" onSubmit={handleSubmitEquipamento}>
+            <label>Nome Completo Funcionario:</label>
+            <input
+              className="inputEquipamento"
+              type="text"
+              value={modelo}
+              onChange={(event) => setModelo(event.target.value)}
+            />
+
+            <label>Fabricante</label>
+            <select
+              className="selectEquipamento"
+              name=""
+              id="selectfabricante"
+              onChange={(event) => setFabricante(event.target.value)}
+            >
+              <option selected disabled value="">
+                Selecione
+              </option>
+              {fabricantes.map((fabricante: any, index: number) => {
+                return (
+                  <option key={index} value={fabricante.id}>
+                    {fabricante.titulo}
+                  </option>
+                );
+              })}
+            </select>
+
+            <label>Consumo Nominal</label>
+            <input
+              className="inputEquipamento"
+              type="number"
+              value={consumo_nominal}
+              onChange={(event) => setConsumoNominal(event.target.value)}
+            />
+            <label>Data</label>
+            <input
+              className="inputEquipamento"
+              type="date"
+              value={data_compra}
+              onChange={(event) => setData(event.target.value)}
+            />
+
+            <label>Setor</label>
+            <select
+              className="selectEquipamento"
+              name=""
+              id="selectsetor"
+              onChange={(event) => setSetor(event.target.value)}
+            >
+              <option selected disabled value="">
+                Selecione
+              </option>
+              {setores.map((setor: any, index: number) => {
+                return (
+                  <option key={index} value={setor.id}>
+                    {setor.titulo}
+                  </option>
+                );
+              })}
+            </select>
+
+            <label>Valor</label>
+            <input
+              className="inputEquipamento"
+              type="any"
+              value={valor}
+              onChange={(event) => setValor(event.target.value)}
+            />
+
+            <button onClick={notify} id="submitEquipamento" type="submit">
+              CADASTRAR
+            </button>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
+          </form>
+        </div>
+
 
       </ModalFuncionario>
-
-
 
       <div id="cadastro">
         <div className="centering">
